@@ -21,8 +21,16 @@ export default function Header() {
         <div className={styles.logo}>
           <img src="/logo512.png" alt="logo" />
         </div>
-        <div className={styles.menuIcon}>≡</div>
-        <div className={styles.navElements}>
+        <div
+          className={styles.menuIcon}
+          onClick={toggleHamburger}
+          aria-hidden="true"
+        >
+          ≡
+        </div>
+        <div
+          className={`${styles.navElements} ${showHamburger && styles.navActive}`}
+        >
           <ul>
             <li>
               <NavLink to="/" className={giveActiveClass} end>

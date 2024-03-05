@@ -23,21 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 
 ### react ###
-.DS_*
-*.log
-logs
-**/*.backup.*
-**/*.back.*
 
 node_modules
 bower_components
-
-# file
-
-.env
-.eslintric.js
-.tsconfig.json
-
-# folder
-
-.vscode
