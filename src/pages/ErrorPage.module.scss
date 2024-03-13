@@ -1,26 +1,12 @@
-@import '../../styles/mixin';
+@import '../styles/mixin';
 
 .wrapper {
-  width: 100%;
   height: calc(100vh - 120px);
-  overflow: hidden;
-
-  padding-bottom: 60px;
-
+  width: 100%;
   .tmp {
-    width: 100%;
-    height: 100%;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-
-      @include desktop {
-        width: 80%;
-        margin-right: 10%;
-        margin-left: 10%;
-      }
-    }
+    width: calc(100% - 1rem);
+    height: auto;
+    padding: 1rem;
+    text-align: center;
   }
 }
