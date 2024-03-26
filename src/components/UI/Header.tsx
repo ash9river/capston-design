@@ -38,6 +38,11 @@ function Header() {
               </NavLink>
             </li>
             <li>
+              <NavLink to="/map" className={giveActiveClass}>
+                Map
+              </NavLink>
+            </li>
+            <li>
               <NavLink to="/error" className={giveActiveClass}>
                 Error
               </NavLink>

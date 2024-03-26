@@ -15,7 +15,7 @@ function exampleTwo() {
   const { data } = useQuery({
     //      ^? const data: string | undefined
     queryKey: ['test'],
-    queryFn: () => Promise.resolve(5),
+    // queryFn: () => Promise.resolve(5),
     select: (data: string) => data.toString(),
   });
 }
