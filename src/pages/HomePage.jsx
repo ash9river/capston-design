@@ -1,3 +1,13 @@
+import MapHeader from 'components/UI/MapHeader';
+import GoogleMapContainer from 'components/map/GoogleMapContainer';
+
+import styles from './HomePage.module.scss';
+
 export default function HomePage() {
-  return <p style={{ margin: '0', height: '100%' }}>This is home</p>;
+  return (
+    <div className={styles['home-page-container']}>
+      <MapHeader />
+      <GoogleMapContainer />
+    </div>
+  );
 }

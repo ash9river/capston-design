@@ -4,9 +4,22 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+/* async function deferRender() {
+  if (process.env.NODE_ENV !== 'development') {
+    return;
+  }
+
+  const { worker } = await import('./services/mocks/browser');
+
+  return worker.start();
+} */
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
+
+/* deferRender().then(() => {
+}); */
 root.render(
   <React.StrictMode>
     <App />

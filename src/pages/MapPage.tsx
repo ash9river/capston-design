@@ -1,4 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react';
+import GoogleMapContainer from 'components/map/GoogleMapContainer';
+import MapHeader from 'components/UI/MapHeader';
 import MyMap from '../components/map/MyMap';
 
 const center = {
@@ -33,7 +35,12 @@ function MapPage() {
       ref={mapRef}
     />
   ); */
-  return <MyMap />;
+  return (
+    <>
+      <MapHeader />
+      <GoogleMapContainer />
+    </>
+  );
 }
 
 export default MapPage;
