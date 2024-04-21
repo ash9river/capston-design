@@ -29,7 +29,7 @@ function MapMarker({ map }: { map: google.maps.Map }) {
   }, [ref]);
 
   return (
-    <div /* ref={ref} */ id="marker">
+    <div /* ref={ref} */ className={styles.marker}>
       {/* MapPin 컴포넌트로 대체 */}
       <MapPin ref={ref}>마커</MapPin>
     </div>
