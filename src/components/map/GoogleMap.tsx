@@ -18,7 +18,7 @@ function GoogleMap() {
         mapId: process.env.REACT_APP_GOOGLE_VECTOR_MAP_KEY as string,
         disableDefaultUI: true,
         clickableIcons: false,
-        minZoom: 10,
+        minZoom: 12,
         maxZoom: 18,
         gestureHandling: 'greedy',
         restriction: {
