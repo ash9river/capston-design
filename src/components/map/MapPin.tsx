@@ -12,18 +12,16 @@ const MapPin = forwardRef<HTMLDivElement, MapPinProps>(function MapPin(
 
   useEffect(() => {
     if (typeof ref === 'function') {
-      if (myRef.current) {
-        const initPin = new google.maps.marker.PinElement({
-          background: '#db4455',
-          borderColor: '#881824',
-        });
-        myRef?.current.appendChild(initPin.element);
-        ref(myRef.current);
+      const initPin = new google.maps.marker.PinElement({
+        background: '#db4455',
+        borderColor: '#881824',
+      });
+      myRef.current?.appendChild(initPin.element);
+      ref(myRef.current);
 
-        return () => {
-          myRef.current?.removeChild(initPin.element);
-        };
-      }
+      return () => {
+        myRef.current?.removeChild(initPin.element);
+      };
     }
   }, []);
 

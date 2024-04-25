@@ -1,17 +1,13 @@
-import React, { useCallback, useRef, useState } from 'react';
+/* eslint-disable react/button-has-type */
+import React, { useCallback, useState } from 'react';
 import styles from './GoogleMap.module.scss';
 import MapMarker from './MapMarker';
 
 function GoogleMap() {
   const [googleMap, setGoogleMap] = useState<google.maps.Map>();
 
-  const ref = useRef<HTMLDivElement>();
-
   const mapRef = useCallback<React.RefCallback<HTMLDivElement>>(
     (node: HTMLDivElement) => {
-      if (ref.current) {
-        //
-      }
       if (node) {
         const initialMap = new window.google.maps.Map(node, {
           center: {
@@ -38,15 +34,13 @@ function GoogleMap() {
 
         setGoogleMap(initialMap);
       }
-
-      ref.current = node;
     },
     [],
   );
 
   return (
     <div ref={mapRef} id="map" className={styles['google-map']}>
-      {googleMap !== undefined ? <MapMarker map={googleMap} /> : null}
+      {googleMap !== undefined && <MapMarker map={googleMap} />}
     </div>
   );
 }
