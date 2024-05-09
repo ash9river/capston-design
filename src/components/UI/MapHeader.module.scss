@@ -2,14 +2,19 @@
   float: left;
   width: 4rem;
   margin: 0 auto;
+  border-right: 1px solid #dbdbdb;
 }
 
 .logo {
+  position: relative;
   height: 10vh;
   width: 100%;
   object-fit: contain;
+  z-index: 300;
+  background-color: white;
 }
 .map-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -18,9 +23,13 @@
   margin: 0;
   list-style: none;
   align-items: center;
+  border-top: 1px solid #dbdbdb;
+  z-index: 300;
   li {
     display: inline-block;
     text-align: center;
+    width: 100%;
     margin: auto;
+    z-index: 300;
   }
 }

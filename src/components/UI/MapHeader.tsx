@@ -1,3 +1,4 @@
+import MapSideBar from 'components/sidebar/MapSideBar';
 import styles from './MapHeader.module.scss';
 import logo from '../../logo.svg';
 
@@ -17,6 +18,7 @@ function MapHeader() {
           return <li key={item.itemId}>{item.content}</li>;
         })}
       </ul>
+      <MapSideBar />
     </header>
   );
 }
