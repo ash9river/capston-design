@@ -1,12 +1,11 @@
 import MapSideBar from 'components/sidebar/MapSideBar';
 import styles from './MapHeader.module.scss';
-import logo from '../../logo.svg';
+import logo from '../../assets/naverLogo.png';
 
 const items = [
-  { itemId: 1, content: 'a' },
+  { itemId: 1, content: '포옹남' },
   { itemId: 2, content: 'b' },
   { itemId: 3, content: 'c' },
-  { itemId: 4, content: 'd' },
 ];
 
 function MapHeader() {

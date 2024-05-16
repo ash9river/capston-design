@@ -1,5 +1,20 @@
 import { http, HttpResponse } from 'msw';
 
+const markers: any = [
+  {
+    id: 1,
+    name: '포옹남 성수송정점',
+    latitude: 37.548341,
+    longitude: 127.064828,
+  },
+  {
+    id: 2,
+    name: '세종대',
+    latitude: 37.549186395087,
+    longitude: 127.07505567644,
+  },
+];
+
 export const handlers = [
   http.get('/stations', async ({ request }) => {
     const url = new URL(request.url);
@@ -42,5 +57,9 @@ export const handlers = [
         longitude: 1,
       },
     ]);
+  }),
+
+  http.get('/markers', async () => {
+    return HttpResponse.json(markers);
   }),
 ];

@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { sidebarIsOpenState } from 'store/atoms/sideBarIsOpenState';
 import styles from './MapSideBar.module.scss';
 import SidePanel from './SidePanel';
 
 function MapSideBar() {
-  const [sideBarOpen, setSideBarOpen] = useState(false);
+  const [sideBarOpen, setSideBarOpen] = useRecoilState(sidebarIsOpenState);
 
   function handleClick() {
     setSideBarOpen((prevState) => !prevState);

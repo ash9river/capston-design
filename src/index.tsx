@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import { RecoilRoot } from 'recoil';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-/* async function deferRender() {
+async function deferRender() {
   if (process.env.NODE_ENV !== 'development') {
     return;
   }
@@ -12,19 +13,21 @@ import reportWebVitals from './reportWebVitals';
   const { worker } = await import('./services/mocks/browser');
 
   return worker.start();
-} */
+}
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 
-/* deferRender().then(() => {
-}); */
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-);
+deferRender().then(() => {
+  root.render(
+    <React.StrictMode>
+      <RecoilRoot>
+        <App />
+      </RecoilRoot>
+    </React.StrictMode>,
+  );
+});
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

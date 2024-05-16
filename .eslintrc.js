@@ -27,6 +27,7 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 0,
     'react/require-default-props': 0,
     'consistent-return': 0,
+    'jsx-a11y/label-has-associated-control': 'warn',
   },
   settings: {
     'import/resolver': {
