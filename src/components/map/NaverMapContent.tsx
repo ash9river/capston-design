@@ -3,8 +3,10 @@ import React, { useRef, useEffect, useState, useCallback } from 'react';
 import getLocation from 'hooks/getLocation';
 import { Marker, useNavermaps, NaverMap, InfoWindow } from 'react-naver-maps';
 import { getData } from 'services/getData';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { shopState } from 'store/atoms/shopState';
+import { markerDataState } from 'store/atoms/markerDataState';
+import { sidebarIsOpenState } from 'store/atoms/sideBarIsOpenState';
 import styles from './NaverMapContent.module.scss';
 
 interface markerType {
@@ -25,6 +27,8 @@ function NaverMapContent() {
   const [map, setMap] = useState<any>();
   const [infowindow, setInfoWindow] = useState<any>(null);
   const [markers, setMarkers] = useState<markerType[]>([]);
+  const setMarkserData = useSetRecoilState(markerDataState);
+  const [sidebar, setSidebar] = useRecoilState(sidebarIsOpenState);
 
   const ref = useRef<naver.maps.Marker[]>([]);
   const infowindowRef = useRef<naver.maps.InfoWindow[]>([]);
@@ -52,7 +56,12 @@ function NaverMapContent() {
       boolRef.current[item.id - 1] = false;
       infowindowRef.current[item.id - 1].close();
       setShop('');
+      if (sidebar) setSidebar((prevState) => !prevState);
     } else {
+      // 로직 수정해야됨
+      /*       infowindowRef.current.map((infoWindowItem, index) =>
+        index !== item.id - 1 ? (boolRef.current[index] = false) : null,
+      ); */
       infowindowRef.current[item.id - 1].open(map, ref.current[item.id - 1]);
       boolRef.current[item.id - 1] = true;
       setShop(item.name);
@@ -62,6 +71,7 @@ function NaverMapContent() {
           markers[item.id - 1].longitude,
         ),
       );
+      setSidebar((prevState) => !prevState);
     }
   }
 
@@ -127,6 +137,7 @@ function NaverMapContent() {
     async function fetchData() {
       const data = await getData<markerType[]>('/markers');
       setMarkers(data);
+      setMarkserData(data);
     }
 
     fetchData();
@@ -141,7 +152,7 @@ function NaverMapContent() {
       defaultCenter={
         new navermaps.LatLng(basicLocation.latitude, basicLocation.longitude)
       }
-      defaultZoom={17}
+      defaultZoom={16}
       defaultMapTypeId={navermaps.MapTypeId.NORMAL}
       ref={setMap}
     >

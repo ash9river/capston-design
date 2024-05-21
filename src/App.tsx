@@ -16,10 +16,10 @@ const router = createBrowserRouter([
         index: true,
         element: <HomePage />,
       },
-      {
+      /* {
         path: 'map',
         element: <MapPage />,
-      },
+      }, */
       // {path: '',element: <>}
     ],
   },

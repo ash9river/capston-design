@@ -32,7 +32,7 @@ function SearchBar() {
             id="search-input"
             className={styles['search-input']}
             name="search-input"
-            autoComplete="false"
+            autoComplete="off"
             aria-controls="home-search-input"
             onChange={(e) => handleInputChange(e.target.value)}
             value={searchValue}

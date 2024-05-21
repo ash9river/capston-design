@@ -14,7 +14,13 @@ function MapHeader() {
       <img className={styles.logo} src={logo} alt="react logo" />
       <ul className={styles['map-container']}>
         {items.map((item) => {
-          return <li key={item.itemId}>{item.content}</li>;
+          return (
+            <li key={item.itemId} className={styles['map-li']}>
+              <button type="button" className={styles['map-li-button']}>
+                <p>{item.content}</p>
+              </button>
+            </li>
+          );
         })}
       </ul>
       <MapSideBar />
