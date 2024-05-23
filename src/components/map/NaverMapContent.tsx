@@ -21,7 +21,7 @@ interface markerType {
 function NaverMapContent() {
   const { data: markers } = useQuery({
     queryKey: ['marker'],
-    queryFn: getMarkers,
+    queryFn: ({ signal }) => getMarkers({ signal }),
   });
   const [shop, setShop] = useRecoilState(shopState);
 

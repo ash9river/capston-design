@@ -15,7 +15,7 @@ function SubPanel({
 }) {
   const { data: marker } = useQuery({
     queryKey: ['marker', `${id}`],
-    queryFn: () => getCongest({ id }),
+    queryFn: ({ signal }) => getCongest({ signal, id }),
   });
   const [isLoading, setIsLoading] = useState(true);
 

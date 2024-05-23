@@ -7,9 +7,15 @@ export type CongestType = {
   congest: number;
 };
 
-export async function getCongest({ id }: { id: number }) {
+export async function getCongest({
+  signal,
+  id,
+}: {
+  signal?: AbortSignal;
+  id: number;
+}) {
   try {
-    const response = await getData<CongestType>(`congest/${id}`);
+    const response = await getData<CongestType>(`congest/${id}`, signal);
     return response;
   } catch (err: any) {
     if (err.response) {

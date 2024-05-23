@@ -8,9 +8,9 @@ export type MarkerType = {
   mapUrl: string;
 };
 
-export async function getMarkers() {
+export async function getMarkers({ signal }: { signal?: AbortSignal }) {
   try {
-    const response = await getData<MarkerType[]>('stores');
+    const response = await getData<MarkerType[]>('stores', signal);
     return response;
   } catch (err: any) {
     if (err.response) {

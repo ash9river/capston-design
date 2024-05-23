@@ -26,7 +26,12 @@ function SidePanel() {
         {markers &&
           markers.map((item) => {
             return item.name === shopData ? (
-              <SubPanel id={item.id} name={item.name} src={item.mapUrl} />
+              <SubPanel
+                key={`subPanel${item.id}`}
+                id={item.id}
+                name={item.name}
+                src={item.mapUrl}
+              />
             ) : null;
           })}
       </div>

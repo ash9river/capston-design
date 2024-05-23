@@ -5,6 +5,7 @@ const breaket = {};
 
 export const getData = async <T>(
   url: string,
+  signal?: AbortSignal,
   config?: AxiosRequestConfig,
 ): Promise<T> => {
   try {
