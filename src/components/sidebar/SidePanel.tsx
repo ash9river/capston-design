@@ -3,6 +3,8 @@ import { sidebarIsOpenState } from 'store/atoms/sideBarIsOpenState';
 import { markerDataState } from 'store/atoms/markerDataState';
 import { shopState } from 'store/atoms/shopState';
 import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { getMarkers } from 'services/getMarkers';
 import SearchBar from './SearchBar';
 import styles from './SidePanel.module.scss';
 import Loader from './Loader';
@@ -12,15 +14,19 @@ function SidePanel() {
   const isOpen = useRecoilValue(sidebarIsOpenState);
   const markerData = useRecoilValue(markerDataState);
   const shopData = useRecoilValue(shopState);
+  const { data: markers } = useQuery({
+    queryKey: ['marker'],
+    queryFn: getMarkers,
+  });
 
   return (
     <div className={styles['panel-container']}>
       <SearchBar />
       <div className={styles['iframe-container']}>
-        {markerData &&
-          markerData.map((item: any) => {
+        {markers &&
+          markers.map((item) => {
             return item.name === shopData ? (
-              <SubPanel name={item.name} src={item.src} />
+              <SubPanel id={item.id} name={item.name} src={item.mapUrl} />
             ) : null;
           })}
       </div>

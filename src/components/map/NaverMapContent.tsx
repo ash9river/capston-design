@@ -7,6 +7,8 @@ import { useRecoilState, useSetRecoilState } from 'recoil';
 import { shopState } from 'store/atoms/shopState';
 import { markerDataState } from 'store/atoms/markerDataState';
 import { sidebarIsOpenState } from 'store/atoms/sideBarIsOpenState';
+import { useQuery } from '@tanstack/react-query';
+import { MarkerType, getMarkers } from 'services/getMarkers';
 import styles from './NaverMapContent.module.scss';
 
 interface markerType {
@@ -17,6 +19,10 @@ interface markerType {
 }
 
 function NaverMapContent() {
+  const { data: markers } = useQuery({
+    queryKey: ['marker'],
+    queryFn: getMarkers,
+  });
   const [shop, setShop] = useRecoilState(shopState);
 
   const basicLocation: { latitude: number; longitude: number } = {
@@ -26,8 +32,6 @@ function NaverMapContent() {
   const navermaps = useNavermaps();
   const [map, setMap] = useState<any>();
   const [infowindow, setInfoWindow] = useState<any>(null);
-  const [markers, setMarkers] = useState<markerType[]>([]);
-  const setMarkserData = useSetRecoilState(markerDataState);
   const [sidebar, setSidebar] = useRecoilState(sidebarIsOpenState);
 
   const ref = useRef<naver.maps.Marker[]>([]);
@@ -69,12 +73,7 @@ function NaverMapContent() {
 
       infowindowRef.current[item.id - 1].open(map, ref.current[item.id - 1]);
       setShop(item.name);
-      map?.panTo(
-        new navermaps.LatLng(
-          markers[item.id - 1].latitude,
-          markers[item.id - 1].longitude,
-        ),
-      );
+      map?.panTo(new navermaps.LatLng(item.latitude, item.longitude));
       setSidebar(true);
     }
   }
@@ -138,18 +137,9 @@ function NaverMapContent() {
   }, [map, infowindow]);
 
   useEffect(() => {
-    async function fetchData() {
-      const data = await getData<markerType[]>('/markers');
-      setMarkers(data);
-      setMarkserData(data);
-    }
-
-    fetchData();
-  }, []);
-
-  useEffect(() => {
     console.log(markers);
   }, [markers]);
+
   return (
     <NaverMap
       // uncontrolled
@@ -160,8 +150,9 @@ function NaverMapContent() {
       defaultMapTypeId={navermaps.MapTypeId.NORMAL}
       ref={setMap}
     >
-      {markers.length > 0 &&
-        markers.map((item: markerType, index: number) => {
+      {markers &&
+        markers.length > 0 &&
+        markers.map((item: MarkerType, index: number) => {
           return (
             <Marker
               key={item.id}

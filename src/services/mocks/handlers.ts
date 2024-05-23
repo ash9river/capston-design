@@ -6,14 +6,16 @@ const markers: any = [
     name: '포옹남 성수송정점',
     latitude: 37.548341,
     longitude: 127.064828,
-    src: 'https://pcmap.place.naver.com/place/1982400005?from=map&fromPanelNum=1&timestamp=202405161456',
+    mapUrl:
+      'https://pcmap.place.naver.com/place/1982400005?from=map&fromPanelNum=1&timestamp=202405161456',
   },
   {
     id: 2,
     name: '세종대',
     latitude: 37.549186395087,
     longitude: 127.07505567644,
-    src: 'https://pcmap.place.naver.com/place/11591591?entry=bmp&from=map&fromPanelNum=2&timestamp=202405161558',
+    mapUrl:
+      'https://pcmap.place.naver.com/place/11591591?entry=bmp&from=map&fromPanelNum=2&timestamp=202405161558',
   },
 ];
 
@@ -61,7 +63,17 @@ export const handlers = [
     ]);
   }),
 
-  http.get('/markers', async () => {
+  http.get('/stores', async () => {
     return HttpResponse.json(markers);
+  }),
+
+  http.get('/congest/:id', async ({ params }) => {
+    const { id } = params;
+    return HttpResponse.json({
+      id,
+      latitude: 1,
+      longitude: 1,
+      congest: 25,
+    });
   }),
 ];

@@ -1,9 +1,27 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { getCongest } from 'services/getCongest';
 import styles from './SubPanel.module.scss';
 import Loader from './Loader';
 
-function SubPanel({ name, src }: { name: string; src: string }) {
+function SubPanel({
+  id,
+  name,
+  src,
+}: {
+  id: number;
+  name: string;
+  src: string;
+}) {
+  const { data: marker } = useQuery({
+    queryKey: ['marker', `${id}`],
+    queryFn: () => getCongest({ id }),
+  });
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    console.log(marker);
+  }, [marker]);
 
   const handleLoad = () => {
     setIsLoading(false);
