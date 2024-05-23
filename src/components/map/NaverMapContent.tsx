@@ -56,14 +56,18 @@ function NaverMapContent() {
       boolRef.current[item.id - 1] = false;
       infowindowRef.current[item.id - 1].close();
       setShop('');
-      if (sidebar) setSidebar((prevState) => !prevState);
+      if (sidebar) setSidebar(false);
     } else {
       // 로직 수정해야됨
-      /*       infowindowRef.current.map((infoWindowItem, index) =>
-        index !== item.id - 1 ? (boolRef.current[index] = false) : null,
-      ); */
+      boolRef.current.forEach((boolItem, index) => {
+        if (index === item.id - 1) {
+          boolRef.current[index] = true;
+        } else {
+          boolRef.current[index] = false;
+        }
+      });
+
       infowindowRef.current[item.id - 1].open(map, ref.current[item.id - 1]);
-      boolRef.current[item.id - 1] = true;
       setShop(item.name);
       map?.panTo(
         new navermaps.LatLng(
@@ -71,7 +75,7 @@ function NaverMapContent() {
           markers[item.id - 1].longitude,
         ),
       );
-      setSidebar((prevState) => !prevState);
+      setSidebar(true);
     }
   }
 

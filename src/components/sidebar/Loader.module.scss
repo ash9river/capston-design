@@ -1,0 +1,60 @@
+.loader,
+.icon {
+  display: inline-block;
+  font-size: 1px;
+  vertical-align: middle;
+  white-space: nowrap;
+  position: absolute;
+}
+
+.loader {
+  text-align: center;
+  width: 100%;
+  margin: auto;
+  top: 50%;
+}
+
+.icon {
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  margin-right: 17px;
+}
+.icon::before {
+  overflow: hidden;
+  display: inline-block;
+  font-size: 1px;
+  line-height: 1px;
+  color: transparent;
+  vertical-align: top;
+  background-image: url('https://map.naver.com/p/assets/sprites/common.png?80c51e6');
+  background-size: 413px 384px;
+  background-position: -375px -232px;
+  width: 16px;
+  height: 22px;
+  mask-image: none;
+  content: '';
+}
+.icon::after {
+  position: absolute;
+  top: 1px;
+  left: 0px;
+  right: 0px;
+  width: 14px;
+  height: 14px;
+  margin: auto;
+  background: rgb(224, 224, 224);
+  border-radius: 8px;
+  animation: 0.4s ease-in-out 0s infinite normal none running load8;
+  transform-origin: center bottom;
+  content: '';
+}
+.icon:nth-child(1)::after {
+  animation-delay: -0.14s;
+}
+.icon:nth-child(2)::after {
+  animation-delay: -0.7s;
+}
+.icon:nth-child(3)::after {
+  animation-delay: 0s;
+}

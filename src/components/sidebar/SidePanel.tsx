@@ -2,8 +2,11 @@ import { useRecoilValue } from 'recoil';
 import { sidebarIsOpenState } from 'store/atoms/sideBarIsOpenState';
 import { markerDataState } from 'store/atoms/markerDataState';
 import { shopState } from 'store/atoms/shopState';
+import { useEffect, useState } from 'react';
 import SearchBar from './SearchBar';
 import styles from './SidePanel.module.scss';
+import Loader from './Loader';
+import SubPanel from './SubPanel';
 
 function SidePanel() {
   const isOpen = useRecoilValue(sidebarIsOpenState);
@@ -14,17 +17,10 @@ function SidePanel() {
     <div className={styles['panel-container']}>
       <SearchBar />
       <div className={styles['iframe-container']}>
-        {/* {isOpen && 'asd'} */}
         {markerData &&
           markerData.map((item: any) => {
             return item.name === shopData ? (
-              <iframe
-                key={item.name}
-                className={styles.frame}
-                id="entryIframe"
-                title="Naver Place Entry"
-                src={item.src}
-              />
+              <SubPanel name={item.name} src={item.src} />
             ) : null;
           })}
       </div>
