@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getCongest } from 'services/getCongest';
 import styles from './SubPanel.module.scss';
 import Loader from './Loader';
+import CongestBar from './CongestBar';
 
 function SubPanel({
   id,
@@ -15,7 +16,7 @@ function SubPanel({
 }) {
   const { data: marker } = useQuery({
     queryKey: ['marker', `${id}`],
-    queryFn: ({ signal }) => getCongest({ signal, id }),
+    queryFn: () => getCongest({ id }),
   });
   const [isLoading, setIsLoading] = useState(true);
 
@@ -29,6 +30,7 @@ function SubPanel({
   return (
     <>
       {isLoading && <Loader />}
+      {!isLoading && marker && <CongestBar congest={marker.congest} />}
       <iframe
         key={name}
         className={styles.frame}

@@ -42,7 +42,7 @@
   z-index: 300;
 }
 .map-li-button {
-  color: green;
+  color: #333333;
   padding-block: 0;
   padding-inline: 0;
   z-index: 10;
@@ -57,4 +57,9 @@
     line-height: 15px;
     letter-spacing: -0.44px;
   }
+}
+
+.category-img {
+  width: 48px;
+  height: auto;
 }
