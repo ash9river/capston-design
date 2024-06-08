@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { shopState } from 'store/atoms/shopState';
 import styles from './SearchBar.module.scss';
 
 function SearchBar() {
   const [searchValue, setSearchValue] = useState('');
-  const shop = useRecoilValue(shopState);
+
+  const [shop, setShop] = useRecoilState(shopState);
   function handleInputChange(value: string) {
     setSearchValue(value);
   }
 
   useEffect(() => {
-    console.log(searchValue);
+    setShop(searchValue);
   }, [searchValue]);
 
   useEffect(() => {

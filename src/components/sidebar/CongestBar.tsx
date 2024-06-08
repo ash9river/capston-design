@@ -11,6 +11,9 @@ function CongestBar({ congest }: { congest: number }) {
     vari = 'itsok';
     congestText = '쾌적';
   } else if (congest <= 60) {
+    vari = 'botong';
+    congestText = '보통';
+  } else if (congest <= 80) {
     vari = 'warn';
     congestText = '혼잡';
   } else {
