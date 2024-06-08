@@ -24,10 +24,10 @@ progress {
   height: 40px;
   .succeess {
     progress ::-webkit-progress-value {
-      background-color: #198754;
+      background-color: #2a6dea;
     }
     span {
-      color: #198754;
+      color: #2a6dea;
     }
   }
   .itsok {
@@ -39,6 +39,14 @@ progress {
     }
     span {
       color: #0dcaf0;
+    }
+  }
+  .botong {
+    progress::-webkit-progress-value {
+      background-color: #198754;
+    }
+    span {
+      color: #198754;
     }
   }
   .warn {
